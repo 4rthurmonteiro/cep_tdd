@@ -79,7 +79,7 @@ void main() {
               'http://viacep.com.br/ws/$tCep/json/',
             ),
           ).thenThrow(
-            (_) async => DioError(
+            DioError(
               response: Response(
                 statusCode: 400,
                 requestOptions: RequestOptions(
