@@ -21,15 +21,12 @@ class AddressRemoteDataSourceImpl implements AddressRemoteDataSource {
 
       return AddressModel.fromJson(response.data);
     } on DioError catch (e) {
-      print('Dio Error $e');
-
       if (e.response?.statusCode == 400) {
         throw BadRequestException();
       } else {
         throw ServerException();
       }
     } catch (e) {
-      print('Error $e');
       throw GenericException();
     }
   }
