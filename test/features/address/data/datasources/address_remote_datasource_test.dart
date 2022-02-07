@@ -1,3 +1,4 @@
+import 'package:cep_tdd/core/errors/expections.dart';
 import 'package:cep_tdd/features/address/data/datasources/address_remote_datasource.dart';
 import 'package:cep_tdd/features/address/domain/entities/address.dart';
 import 'package:dio/dio.dart';
@@ -92,9 +93,12 @@ void main() {
             ),
           );
 
-          final result = await addressRemoteDataSource.getAddress(cep: tCep);
+          // final result = await addressRemoteDataSource.getAddress(cep: tCep);
 
-          expect(result, isNotNull);
+          expect(() => addressRemoteDataSource.getAddress(cep: tCep),
+              throwsA(isA<BadRequestException>()));
+
+          // expect(result, isA<BadRequestException>());
         },
       );
     },
